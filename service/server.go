@@ -334,9 +334,9 @@ func (this *Server) handleConnection(c io.Closer) (svc *service, err error) {
 		return nil, err
 	}
 
-	//this.mu.Lock()
-	//this.svcs = append(this.svcs, svc)
-	//this.mu.Unlock()
+	this.mu.Lock()
+	this.svcs = append(this.svcs, svc)
+	this.mu.Unlock()
 
 	glog.Infof("(%s) server/handleConnection: Connection established.", svc.cid())
 
